@@ -11,12 +11,13 @@ const AppProvider = ({ children }) => {
         const fetchData = async () => {
             const response = await fetch(url);
             const result = await response.json();
+
             setData(result)
         }
 
         fetchData()
     }, [])
-
+    
     console.log(data)
     return (
         <AppContext.Provider value={"bolo"}>
