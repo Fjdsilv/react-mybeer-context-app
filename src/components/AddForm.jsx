@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from "uuid"
 import { useMyContext } from "../context/appContext"
 
@@ -9,9 +10,10 @@ const AddForm = () => {
         description: "",
         brewers_tips: "",
     })
-    // const [addNewBeer, setAddNewBeer] = useState([])
     
     const { beers, setBeers } = useMyContext();
+
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setMyNewBeer({ ...myNewBeer, [e.target.name]: e.target.value })
@@ -34,6 +36,8 @@ const AddForm = () => {
                 brewers_tips: "",
             })
         }
+
+        navigate("/")
 
     }
 
