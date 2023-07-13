@@ -1,10 +1,23 @@
 import { useContext, createContext, useState, useEffect } from "react";
 
-// const url = "https://api.punkapi.com/v2/beers"
+const url = "https://api.punkapi.com/v2/beers"
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
+    const [data, setData] = useState("")
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(url);
+            const result = await response.json();
+            setData(result)
+        }
+
+        fetchData()
+    }, [])
+
+    console.log(data)
     return (
         <AppContext.Provider value={"bolo"}>
         {children}

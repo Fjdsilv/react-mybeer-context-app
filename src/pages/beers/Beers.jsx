@@ -1,4 +1,3 @@
-import { useMyContext } from "../../context/appContext"
 
 const Beers = () => {
   return (
