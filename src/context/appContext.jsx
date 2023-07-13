@@ -19,13 +19,16 @@ const AppProvider = ({ children }) => {
     }, [])
     
     const deleteBeer = (id) => {
-
+       setBeers((oldBeers) => {
+        return oldBeers.filter(beer => beer.id !== id)
+       })
     }
-    
+
     return (
         <AppContext.Provider value={{
             beers,
-            setBeers
+            setBeers,
+            deleteBeer
         }}>
         {children}
         </AppContext.Provider>

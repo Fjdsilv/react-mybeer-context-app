@@ -4,7 +4,7 @@ import { useMyContext } from "../../context/appContext"
 const Beers = () => {
     const [query, setQuery] = useState("")
 
-    const { beers } = useMyContext(); 
+    const { beers, deleteBeer } = useMyContext(); 
     // console.log(beers)
 
     console.log(beers.filter(beer => beer.name))
@@ -31,6 +31,11 @@ const Beers = () => {
                             <p>{description}</p>
                             <p>{brewers_tips}</p>
                             <img src={image_url} alt={name} />
+                            <button
+                                onClick={() => deleteBeer(id)}
+                            >
+                            delete beer
+                            </button>
                         </div>
                     )
                 })}
