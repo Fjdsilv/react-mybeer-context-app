@@ -1,28 +1,33 @@
 import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useMyContext } from "../context/appContext"
 
 const AddForm = () => {
-    const [newBeer, setNewBeer] = useState({
+    const [myNewBeer, setMyNewBeer] = useState({
         name: "",
         tagline: "",
         description: "",
         brewers_tips: "",
     })
-    const [addNewBeer, setAddNewBeer] = useState([])
+    // const [addNewBeer, setAddNewBeer] = useState([])
     
+    const { beers, setBeers } = useMyContext();
 
     const handleChange = (e) => {
-        setNewBeer({ ...newBeer, [e.target.name]: e.target.value })
+        setMyNewBeer({ ...myNewBeer, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!newBeer.name || !newBeer.tagline || !newBeer.description || !newBeer.brewers_tips) {
+        if (!myNewBeer.name || !myNewBeer.tagline || !myNewBeer.description || !myNewBeer.brewers_tips) {
             alert("incomplete form");
         }
         else {
-            setAddNewBeer([...addNewBeer, newBeer])
+            const newBeer = { id: uuidv4(), ...myNewBeer }  
+            
+            setBeers([...beers, newBeer])
 
-            setNewBeer({
+            setMyNewBeer({
                 name: "",
                 tagline: "",
                 description: "",
@@ -32,7 +37,9 @@ const AddForm = () => {
 
     }
 
-    console.log(addNewBeer)
+    console.log(beers)
+
+    // console.log(addNewBeer)
 
     // console.log(newBeer)
 
@@ -45,7 +52,7 @@ const AddForm = () => {
                     type="text" 
                     name="name" 
                     id="name" 
-                    value={newBeer.name}
+                    value={myNewBeer.name}
                     onChange={handleChange}
                 />
             </div>       
@@ -55,7 +62,7 @@ const AddForm = () => {
                     type="text" 
                     name="tagline" 
                     id="tagline" 
-                    value={newBeer.tagline}
+                    value={myNewBeer.tagline}
                     onChange={handleChange}
                 />
             </div>
@@ -65,7 +72,7 @@ const AddForm = () => {
                     type="text" 
                     name="description" 
                     id="description"
-                    value={newBeer.description} 
+                    value={myNewBeer.description} 
                     onChange={handleChange}
                 />
             </div>
@@ -75,7 +82,7 @@ const AddForm = () => {
                     type="text" 
                     name="brewers_tips" 
                     id="brewers_tips" 
-                    value={newBeer.brewers_tips}
+                    value={myNewBeer.brewers_tips}
                     onChange={handleChange}
                 />
             </div>
