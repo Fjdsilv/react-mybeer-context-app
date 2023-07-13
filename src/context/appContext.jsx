@@ -5,7 +5,7 @@ const url = "https://api.punkapi.com/v2/beers"
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-    const [beers, setBeers] = useState("")
+    const [beers, setBeers] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,7 +18,7 @@ const AppProvider = ({ children }) => {
         fetchData()
     }, [])
     
-    console.log(beers)
+    // console.log(beers)
     return (
         <AppContext.Provider value={{
             beers,

@@ -35,13 +35,13 @@ const AddForm = () => {
                 description: "",
                 brewers_tips: "",
             })
+            
+            navigate("/")
         }
-
-        navigate("/")
 
     }
 
-    console.log(beers)
+    // console.log(beers)
 
     // console.log(addNewBeer)
 
