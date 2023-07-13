@@ -7,16 +7,38 @@ const AddForm = () => {
         description: "",
         brewers_tips: "",
     })
+    const [addNewBeer, setAddNewBeer] = useState([])
+    
 
     const handleChange = (e) => {
-
-
-        setNewBeer({...newBeer,  })
+        setNewBeer({ ...newBeer, [e.target.name]: e.target.value })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (!newBeer.name || !newBeer.tagline || !newBeer.description || !newBeer.brewers_tips) {
+            alert("incomplete form");
+        }
+        else {
+            setAddNewBeer([...addNewBeer, newBeer])
+
+            setNewBeer({
+                name: "",
+                tagline: "",
+                description: "",
+                brewers_tips: "",
+            })
+        }
+
+    }
+
+    console.log(addNewBeer)
+
+    // console.log(newBeer)
 
   return (
     <article>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Name:</label>
                 <input 
