@@ -5,7 +5,9 @@ const Beers = () => {
     const [query, setQuery] = useState("")
 
     const { beers } = useMyContext(); 
-    console.log(beers)
+    // console.log(beers)
+
+    console.log(beers.filter(beer => beer.name))
   return (
     <div>
         <h1>My Beers</h1>
@@ -18,7 +20,9 @@ const Beers = () => {
             onChange={(e) => setQuery(e.target.value)}
         />
         <div>
-            {beers.map(beer => {
+            {beers
+                .filter(beer => beer.name.toLowerCase().includes(query))
+                .map(beer => {
                     const { name, tagline, description, brewers_tips, image_url, id } = beer;
                     return (
                         <div key={id}>

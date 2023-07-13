@@ -18,7 +18,10 @@ const AppProvider = ({ children }) => {
         fetchData()
     }, [])
     
-    // console.log(beers)
+    const deleteBeer = (id) => {
+
+    }
+    
     return (
         <AppContext.Provider value={{
             beers,
